@@ -1,29 +1,42 @@
 function hasTargetSum(array, target) {
-  //hasTargetSum([22, 19, 4, 6, 30], 25))
-  //iterate through each number in the array
-  for(let i = 0; i<array.length; i++){
-  //for the current num, identify a comlement that adds to the target (comp =target-num)
-  const complement = target - array[i]
-  //iterate through the rest of the array
-  for(let j = i + 1; j<array.length; j++)
-  // check if any number is our complement
-  if (array[j] ===complement)return true
-  }
-    // if i get to the end of the array, return false 
+const seenNumbers = {}
 
-return false;
+for(const number of array){
+  //n step
+const complement = target - number;
+if(complement in seenNumbers) return true;
+seenNumbers[number] = true;
 }
+ 
+return false
+}
+// Runtime: O(n^2)
+//function hasTargetSum(array, target) {
+  //for(let i = 0; i<array.length; i++){
+  //const complement = target - array[i]
+ // for(let j = i + 1; j<array.length; j++)
+  //if (array[j] ===complement)return true
+  //}
+
+//return false;
+//}
 /* 
   Write the Big O time complexity of your function here
-*/
+  runtime: O(n^2)
+  Space: O(n)
 
+*/
+//
 /* 
-  
+  Create an object to keep trach of numbers seen
+  Iterate through the array once 
+  For current num, identify a complement  that adds to the target (comp = target - num)
+  check if any key on our object is the complement 
+  if so, return true 
+  otherwise, add that number to the object
+  If i reach the end of the array, return false
   */
 
-/*
-  Add written explanation of your solution here
-*/ 
 
 // You can run `node index.js` to view these console logs
 if (require.main === module) {
